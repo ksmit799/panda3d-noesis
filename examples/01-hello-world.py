@@ -13,7 +13,8 @@ from panda3d.core import Point3, loadPrcFileData
 
 loadPrcFileData("", "load-display pandagl")
 loadPrcFileData("", "gl-version 3 2")
-loadPrcFileData("", "gl-debug true")
+loadPrcFileData("", "gl-debug false")
+loadPrcFileData("", "model-path resources")
 loadPrcFileData("", "notify-level-noesis spam")
 loadPrcFileData("", "show-frame-rate-meter true")
 loadPrcFileData("", "sync-video false")

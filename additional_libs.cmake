@@ -23,7 +23,7 @@ include_directories(${NOESIS_ROOT_DIR}/Include)
 include_directories(${NOESIS_PKG_DIR}/Render/RenderContext/Include)
 include_directories(${NOESIS_PKG_DIR}/Render/GLRenderDevice/Include)
 include_directories(${NOESIS_PKG_DIR}/Render/D3D11RenderDevice/Include)
-include_directories(${NOESIS_PKG_DIR}/App/Theme/Include)
+include_directories(${NOESIS_PKG_DIR}/App/Providers/Include)
 
 # Copy binary dependencies.
 if (WIN32)

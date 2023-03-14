@@ -2,11 +2,10 @@
 
 #include "camera.h"
 #include "clockObject.h"
+#include "noesisRender.h"
 #include "orthographicLens.h"
 #include "pStatTimer.h"
-#include "noesisRender.h"
 
-#include <NsApp/ThemeProviders.h>
 #include <NsGui/FontProperties.h>
 #include <NsGui/Grid.h>
 #include <NsGui/IRenderer.h>
@@ -30,7 +29,6 @@ NoesisRegion::NoesisRegion(GraphicsOutput *window,
                      << ", " << _height << ")\n";
 
   // Setup theme
-  NoesisApp::SetThemeProviders();
   Noesis::GUI::LoadApplicationResources("Theme/NoesisTheme.DarkBlue.xaml");
 
   // For simplicity purposes we are not using resource providers in this sample.
@@ -109,8 +107,8 @@ void NoesisRegion::do_cull(CullHandler *cull_handler, SceneSetup *scene_setup,
     _width = width;
     _height = height;
 
-    noesis_cat.debug() << "Setting  context dimensions to (" << _width
-                       << ", " << _height << ")\n";
+    noesis_cat.debug() << "Setting  context dimensions to (" << _width << ", "
+                       << _height << ")\n";
 
     _lens->set_film_size(_width, -_height);
     _lens->set_film_offset(_width * 0.5, _height * 0.5);

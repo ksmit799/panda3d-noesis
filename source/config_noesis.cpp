@@ -1,11 +1,14 @@
 #include "config_noesis.h"
 
+#include <NsGui/FontProperties.h>
 #include <NsGui/IntegrationAPI.h>
 
-#include "pandaSystem.h"
 #include "dconfig.h"
+#include "noesisFontLoader.h"
 #include "noesisRegion.h"
-#include "noesisRender.h"
+#include "noesisTextureLoader.h"
+#include "noesisXamlLoader.h"
+#include "pandaSystem.h"
 
 Configure(config_noesis);
 NotifyCategoryDef(noesis, "");
@@ -60,9 +63,20 @@ void init_libnoesis() {
   // NoesisGUI functionality
   Noesis::GUI::Init();
 
+  // Setup resource providers.
+  // (Hooks into the VFS).
+  Noesis::GUI::SetXamlProvider(Noesis::MakePtr<NoesisXamlLoader>());
+  Noesis::GUI::SetTextureProvider(Noesis::MakePtr<NoesisTextureLoader>());
+  Noesis::GUI::SetFontProvider(Noesis::MakePtr<NoesisFontLoader>());
+
+  const char *fonts[] = {"Arial", "Segoe UI Emoji"};
+  Noesis::GUI::SetFontFallbacks(fonts, 2);
+  Noesis::GUI::SetFontDefaultProperties(15.0f, Noesis::FontWeight_Normal,
+                                        Noesis::FontStretch_Normal,
+                                        Noesis::FontStyle_Normal);
+
   // Init your dynamic types here:
   NoesisRegion::init_type();
-  NoesisRender::init_type();
 
   // Register that we have the libNoesis system.
   PandaSystem *ps = PandaSystem::get_global_ptr();
