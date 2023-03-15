@@ -19,7 +19,7 @@ loadPrcFileData("", "notify-level-noesis spam")
 loadPrcFileData("", "show-frame-rate-meter true")
 loadPrcFileData("", "sync-video false")
 
-from noesis import NoesisRegion
+from noesis import NoesisRegion, NoesisInputHandler
 
 
 class MyApp(ShowBase):
@@ -29,6 +29,10 @@ class MyApp(ShowBase):
         self.region = NoesisRegion.make("pandaNoesis", base.win)
         self.region.setActive(True)
         self.region.setSort(20)
+
+        self.handler = NoesisInputHandler()
+        base.mouseWatcher.attach_new_node(self.handler)
+        self.region.set_input_handler(self.handler)
 
         # Disable the camera trackball controls.
         self.disableMouse()

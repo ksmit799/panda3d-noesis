@@ -5,6 +5,7 @@
 
 #include "dconfig.h"
 #include "noesisFontLoader.h"
+#include "noesisInputHandler.h"
 #include "noesisRegion.h"
 #include "noesisTextureLoader.h"
 #include "noesisXamlLoader.h"
@@ -77,6 +78,7 @@ void init_libnoesis() {
 
   // Init your dynamic types here:
   NoesisRegion::init_type();
+  NoesisInputHandler::init_type();
 
   // Register that we have the libNoesis system.
   PandaSystem *ps = PandaSystem::get_global_ptr();

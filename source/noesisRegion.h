@@ -4,6 +4,7 @@
 #include "config_noesis.h"
 #include "displayRegion.h"
 #include "graphicsOutput.h"
+#include "noesisInputHandler.h"
 
 #include <NsGui/IView.h>
 
@@ -38,10 +39,14 @@ PUBLISHED:
                                    GraphicsOutput *window,
                                    const LVecBase4 &dimensions);
 
+  INLINE void set_input_handler(NoesisInputHandler *handler);
+  INLINE NoesisInputHandler *get_input_handler() const;
+
 private:
   int _width, _height;
   PT(OrthographicLens) _lens;
-  PT(NoesisRender) _renderCallback;
+  PT(NoesisRender) _render_callback;
+  PT(NoesisInputHandler) _input_handler;
   Noesis::IView *_view;
 
 public:

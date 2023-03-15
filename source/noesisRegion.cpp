@@ -84,8 +84,8 @@ NoesisRegion::NoesisRegion(GraphicsOutput *window,
   PT(Camera) cam = new Camera(context_name, _lens);
   set_camera(NodePath(cam));
 
-  _renderCallback = new NoesisRender(_view);
-  set_draw_callback(_renderCallback);
+  _render_callback = new NoesisRender(_view);
+  set_draw_callback(_render_callback);
 }
 
 NoesisRegion::~NoesisRegion() {}
@@ -114,6 +114,11 @@ void NoesisRegion::do_cull(CullHandler *cull_handler, SceneSetup *scene_setup,
     _lens->set_film_offset(_width * 0.5, _height * 0.5);
 
     _view->SetSize(_width, _height);
+  }
+
+  // Input handling.
+  if (_input_handler != nullptr) {
+    _input_handler->process(_view);
   }
 
   // Updates view (real time, not dt).
