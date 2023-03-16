@@ -86,7 +86,7 @@ void NoesisRegion::do_cull(CullHandler *cull_handler, SceneSetup *scene_setup,
     _width = width;
     _height = height;
 
-    noesis_cat.debug() << "Setting  context dimensions to (" << _width << ", "
+    noesis_cat.debug() << "Setting context dimensions to (" << _width << ", "
                        << _height << ")\n";
 
     _lens->set_film_size(_width, -_height);
