@@ -1,6 +1,6 @@
 # Panda3D Noesis
 
-> Noesis GUI Support for Panda3D
+> Noesis GUI support for Panda3D
 
 [Noesis GUI](https://www.noesisengine.com/) is a resolution-independent, vector-based rendering engine that is built to
 take advantage of modern graphics
@@ -39,6 +39,26 @@ to `libs/NoesisGUI/Src/NoesisApp/Projects/<your platform>` and compiling.
 You will also need to set the `NS_LICENSE_NAME` and `NS_LICENSE_KEY` CMake variables before compling for Panda3D (with
 your license
 name and key).
+
+## Building
+
+*Panda3D Noesis has been built and tested on Windows 10/11 64-bit with Visual Studio 2022*
+
+- The Panda3D SDK (get it <a href="http://www.panda3d.org/download.php?sdk">here</a>)
+- CMake 2.6 or higher (get it <a href="https://cmake.org/download/">here</a>)
+- windows only: The thirdparty folder installed in the Panda3D sdk folder (
+  See <a href="https://www.panda3d.org/forums/viewtopic.php?f=9&t=18775">here</a>)
+
+**For compiling on Windows 32 bit:**
+
+- Visual Studio 2010/2015/2022
+
+**For compiling on Windows 64 bit:**
+
+- Visual Studio 2010/2015/2022
+- Windows SDK 10 (be sure to tick the VC++ 64 bit compilers option)
+
+Once these requirements have been satisfied, simply run `ppython build.py` in the root directory.
 
 ## Examples
 
