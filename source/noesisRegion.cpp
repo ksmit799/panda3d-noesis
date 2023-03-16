@@ -118,7 +118,7 @@ void NoesisRegion::do_cull(CullHandler *cull_handler, SceneSetup *scene_setup,
 
   // Input handling.
   if (_input_handler != nullptr) {
-    _input_handler->process(_view);
+    _input_handler->process(_view, pl, pb);
   }
 
   // Updates view (real time, not dt).
