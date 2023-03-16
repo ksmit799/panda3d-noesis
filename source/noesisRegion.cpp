@@ -7,7 +7,7 @@
 #include "pStatTimer.h"
 
 #include <NsGui/FontProperties.h>
-#include <NsGui/Grid.h>
+#include <NsGui/FrameworkElement.h>
 #include <NsGui/IRenderer.h>
 #include <NsGui/IView.h>
 #include <NsGui/IntegrationAPI.h>
@@ -17,7 +17,9 @@ TypeHandle NoesisRegion::_type_handle;
 
 NoesisRegion::NoesisRegion(GraphicsOutput *window,
                            const LVecBase4 &dr_dimensions,
-                           const std::string &context_name)
+                           const std::string &context_name,
+                           const std::string &theme_name,
+                           const std::string &root_panel)
     : DisplayRegion(window, dr_dimensions) {
   int pl, pr, pb, pt;
   get_pixels(pl, pr, pb, pt);
@@ -28,40 +30,14 @@ NoesisRegion::NoesisRegion(GraphicsOutput *window,
   noesis_cat.debug() << "Setting initial context dimensions to (" << _width
                      << ", " << _height << ")\n";
 
-  // Setup theme
-  Noesis::GUI::LoadApplicationResources("Theme/NoesisTheme.DarkBlue.xaml");
+  // Setup theme.
+  Noesis::GUI::LoadApplicationResources(theme_name.c_str());
 
-  // For simplicity purposes we are not using resource providers in this sample.
-  // ParseXaml() is enough if there is no extra XAML dependencies
-  Noesis::Ptr<Noesis::Grid> xaml(Noesis::GUI::ParseXaml<Noesis::Grid>(R"(
-        <Grid xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-            <Grid.Background>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                    <GradientStop Offset="0" Color="#FF123F61"/>
-                    <GradientStop Offset="0.6" Color="#FF0E4B79"/>
-                    <GradientStop Offset="0.7" Color="#FF106097"/>
-                </LinearGradientBrush>
-            </Grid.Background>
-            <Viewbox>
-                <StackPanel Margin="50">
-                    <Button Content="Hello World!" Margin="0,30,0,0"/>
-                    <Rectangle Height="5" Margin="-10,20,-10,0">
-                        <Rectangle.Fill>
-                            <RadialGradientBrush>
-                                <GradientStop Offset="0" Color="#40000000"/>
-                                <GradientStop Offset="1" Color="#00000000"/>
-                            </RadialGradientBrush>
-                        </Rectangle.Fill>
-                    </Rectangle>
-                </StackPanel>
-            </Viewbox>
-        </Grid>
-    )"));
+  // Load the root panel.
+  Noesis::Ptr<Noesis::FrameworkElement> xaml =
+      Noesis::GUI::LoadXaml<Noesis::FrameworkElement>(root_panel.c_str());
 
-  // View creation to render and interact with the user interface
-  // We transfer the ownership to a global pointer instead of a Ptr<> because
-  // there is no way in GLUT to do shutdown and we don't want the Ptr<> to be
-  // released at global time
+  // View creation to render and interact with the user interface.
   _view = Noesis::GUI::CreateView(xaml).GiveOwnership();
   _view->SetFlags(Noesis::RenderFlags_PPAA | Noesis::RenderFlags_LCD);
   _view->SetSize(_width, _height);
@@ -88,7 +64,10 @@ NoesisRegion::NoesisRegion(GraphicsOutput *window,
   set_draw_callback(_render_callback);
 }
 
-NoesisRegion::~NoesisRegion() {}
+NoesisRegion::~NoesisRegion() {
+  // Shutdown the renderer.
+  _view->GetRenderer()->Shutdown();
+}
 
 void NoesisRegion::do_cull(CullHandler *cull_handler, SceneSetup *scene_setup,
                            GraphicsStateGuardian *gsg, Thread *current_thread) {

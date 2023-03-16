@@ -5,8 +5,11 @@
  * window.
  */
 INLINE NoesisRegion *NoesisRegion::make(const std::string &context_name,
-                                        GraphicsOutput *window) {
-  return make(context_name, window, LVecBase4(0.0f, 1.0f, 0.0f, 1.0f));
+                                        GraphicsOutput *window,
+                                        const std::string &theme_name,
+                                        const std::string &root_panel) {
+  return make(context_name, window, theme_name, root_panel,
+              LVecBase4(0.0f, 1.0f, 0.0f, 1.0f));
 }
 
 /**
@@ -16,8 +19,11 @@ INLINE NoesisRegion *NoesisRegion::make(const std::string &context_name,
  */
 INLINE NoesisRegion *NoesisRegion::make(const std::string &context_name,
                                         GraphicsOutput *window,
+                                        const std::string &theme_name,
+                                        const std::string &root_panel,
                                         const LVecBase4 &dimensions) {
-  return new NoesisRegion(window, dimensions, context_name);
+  return new NoesisRegion(window, dimensions, context_name, theme_name,
+                          root_panel);
 }
 
 INLINE void NoesisRegion::set_input_handler(NoesisInputHandler *handler) {

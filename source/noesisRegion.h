@@ -25,7 +25,8 @@ class NoesisRender;
 class EXPCL_NOESIS NoesisRegion : public DisplayRegion {
 protected:
   NoesisRegion(GraphicsOutput *window, const LVecBase4 &dimensions,
-               const std::string &context_name);
+               const std::string &context_name, const std::string &theme_name,
+               const std::string &root_panel);
 
   virtual void do_cull(CullHandler *cull_handler, SceneSetup *scene_setup,
                        GraphicsStateGuardian *gsg, Thread *current_thread);
@@ -34,9 +35,13 @@ PUBLISHED:
   virtual ~NoesisRegion();
 
   INLINE static NoesisRegion *make(const std::string &context_name,
-                                   GraphicsOutput *window);
+                                   GraphicsOutput *window,
+                                   const std::string &theme_name,
+                                   const std::string &root_panel);
   INLINE static NoesisRegion *make(const std::string &context_name,
                                    GraphicsOutput *window,
+                                   const std::string &theme_name,
+                                   const std::string &root_panel,
                                    const LVecBase4 &dimensions);
 
   INLINE void set_input_handler(NoesisInputHandler *handler);

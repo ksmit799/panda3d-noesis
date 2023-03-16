@@ -26,7 +26,7 @@ class MyApp(ShowBase):
     def __init__(self):
         ShowBase.__init__(self)
 
-        self.region = NoesisRegion.make("pandaNoesis", base.win)
+        self.region = NoesisRegion.make("pandaNoesis", base.win, "Theme/NoesisTheme.DarkBlue.xaml", "HelloWorld.xaml")
         self.region.setActive(True)
         self.region.setSort(20)
 
