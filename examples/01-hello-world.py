@@ -7,8 +7,6 @@ from panda3d.core import loadPrcFileData
 from direct.showbase.ShowBase import ShowBase
 
 loadPrcFileData("", "load-display pandagl")
-loadPrcFileData("", "gl-version 3 2")
-loadPrcFileData("", "gl-debug true")
 loadPrcFileData("", "model-path resources")
 loadPrcFileData("", "notify-level-noesis spam")
 loadPrcFileData("", "show-frame-rate-meter true")
