@@ -18,15 +18,6 @@ Panda3D Noesis adds native Noesis GUI support to the [Panda3D](https://www.panda
 
 ## Requirements
 
-### Panda3D
-
-You will need to run your Panda3D application with the OpenGL 3.2 Core render pipeline:
-
-```
-loadPrcFileData("", "load-display pandagl")
-loadPrcFileData("", "gl-version 3 2")
-```
-
 ### Noesis GUI
 
 You must obtain a [copy of Noesis GUI](https://www.noesisengine.com/licensing.php) and place it into the `libs/` folder.
