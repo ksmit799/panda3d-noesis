@@ -8,7 +8,7 @@ hardware. Based on XAML, a powerful UI declarative markup language compatible wi
 
 Panda3D Noesis adds native Noesis GUI support to the [Panda3D](https://www.panda3d.org/) game engine.
 
-*Latest supported Noesis GUI version: **3.1.7***
+*Latest supported Noesis GUI version: **3.2.0***
 
 ## Features
 
@@ -34,7 +34,7 @@ Make sure to rename the root Noesis folder
 to `NoesisGUI`
 
 Currently, the NoesisApp dependency will also need to be compiled. You can do so by navigating
-to `libs/NoesisGUI/Src/NoesisApp/Projects/<your platform>` and compiling.
+to `libs/NoesisGUI/Build/` and compiling for your target platform.
 
 You will also need to set the `NS_LICENSE_NAME` and `NS_LICENSE_KEY` CMake variables before compling for Panda3D (with
 your license

@@ -11,6 +11,7 @@
 #include <NsGui/IRenderer.h>
 #include <NsGui/IView.h>
 #include <NsGui/IntegrationAPI.h>
+#include <NsGui/Uri.h>
 #include <NsRender/GLFactory.h>
 
 TypeHandle NoesisRegion::_type_handle;
@@ -31,7 +32,7 @@ NoesisRegion::NoesisRegion(GraphicsOutput *window,
                      << ", " << _height << ")\n";
 
   // Setup theme.
-  Noesis::GUI::LoadApplicationResources(theme_name.c_str());
+  Noesis::GUI::LoadApplicationResources(Noesis::Uri(theme_name.c_str()));
 
   // Load the root panel.
   Noesis::Ptr<Noesis::FrameworkElement> xaml =
