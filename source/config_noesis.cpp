@@ -60,6 +60,11 @@ void init_libnoesis() {
   // This is set at compile time.
   Noesis::GUI::SetLicense(NS_LICENSE_NAME, NS_LICENSE_KEY);
 
+  // See: https://www.noesisengine.com/docs/Gui.Core.InspectorTutorial.html
+  // TODO: Make this a config variable.
+  // NB: This should always be disabled in shipping builds.
+  Noesis::GUI::DisableInspector();
+
   // Noesis initialization. This must be the first step before using any
   // NoesisGUI functionality
   Noesis::GUI::Init();
