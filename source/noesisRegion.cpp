@@ -103,11 +103,4 @@ void NoesisRegion::do_cull(CullHandler *cull_handler, SceneSetup *scene_setup,
 
   // Updates view (real time, not dt).
   _view->Update(ClockObject::get_global_clock()->get_real_time());
-
-  // Applies last changes happened in view.
-  _view->GetRenderer()->UpdateRenderTree();
-  // Generates offscreen textures.
-  _view->GetRenderer()->RenderOffscreen();
-
-  _view->GetRenderer()->Render();
 }

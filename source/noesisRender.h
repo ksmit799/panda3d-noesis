@@ -20,7 +20,7 @@ public:
   ALLOC_DELETED_CHAIN(NoesisRender);
   NoesisRender(Noesis::IView *view);
 
-  virtual void do_callback(DisplayRegionDrawCallbackData *data);
+  virtual void do_callback(CallbackData *data);
 
 private:
   Noesis::IView *_view;
