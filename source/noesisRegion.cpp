@@ -108,4 +108,6 @@ void NoesisRegion::do_cull(CullHandler *cull_handler, SceneSetup *scene_setup,
   _view->GetRenderer()->UpdateRenderTree();
   // Generates offscreen textures.
   _view->GetRenderer()->RenderOffscreen();
+
+  _view->GetRenderer()->Render();
 }
