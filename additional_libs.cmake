@@ -20,8 +20,6 @@ endif()
 
 # Include header files.
 include_directories(${NOESIS_ROOT_DIR}/Include)
-include_directories(${NOESIS_PKG_DIR}/Render/RenderContext/Include)
-include_directories(${NOESIS_PKG_DIR}/Render/GLRenderDevice/Include)
 include_directories(${NOESIS_PKG_DIR}/App/Providers/Include)
 
 # Copy binary dependencies.

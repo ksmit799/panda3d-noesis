@@ -3,7 +3,6 @@
 
 #include "config_noesis.h"
 #include "callbackObject.h"
-#include "displayRegionDrawCallbackData.h"
 #include "typedReferenceCount.h"
 
 #include <NsGui/IView.h>

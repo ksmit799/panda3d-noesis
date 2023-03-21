@@ -3,6 +3,7 @@
 #include "camera.h"
 #include "clockObject.h"
 #include "noesisRender.h"
+#include "noesisRenderer.h"
 #include "orthographicLens.h"
 #include "pStatTimer.h"
 
@@ -31,6 +32,12 @@ NoesisRegion::NoesisRegion(GraphicsOutput *window,
   noesis_cat.debug() << "Setting initial context dimensions to (" << _width
                      << ", " << _height << ")\n";
 
+  // We need to clear the stencil buffer.
+  set_clear_color_active(true);
+  set_clear_depth_active(true);
+  set_clear_stencil_active(true);
+  set_clear_color(LColor(0, 0, 0, 0));
+
   // Setup theme.
   Noesis::GUI::LoadApplicationResources(Noesis::Uri(theme_name.c_str()));
 
@@ -43,15 +50,8 @@ NoesisRegion::NoesisRegion(GraphicsOutput *window,
   _view->SetFlags(Noesis::RenderFlags_PPAA | Noesis::RenderFlags_LCD);
   _view->SetSize(_width, _height);
 
-  // Renderer initialization with an OpenGL device
-  std::string pipeName = window->get_pipe()->get_interface_name();
-  if (pipeName == "OpenGL") {
-    _view->GetRenderer()->Init(NoesisApp::GLFactory::CreateDevice(false));
-    noesis_cat.debug() << "Render device set to OpenGL\n";
-  } else {
-    noesis_cat.fatal() << "No compatible render device for pipe: " << pipeName
-                       << "\n";
-  }
+  // Renderer initialization.
+  _view->GetRenderer()->Init(*new NoesisRenderer());
 
   _lens = new OrthographicLens();
   _lens->set_film_size(_width, -_height);
